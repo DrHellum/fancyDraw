@@ -1,0 +1,141 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "fancydraw-desktop": {
+      "root": "apps/fancydraw-desktop/",
+      "sourceRoot": "apps/fancydraw-desktop/src",
+      "projectType": "application",
+      "prefix": "fancydraw",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/fancydraw-desktop",
+            "index": "apps/fancydraw-desktop/src/index.html",
+            "main": "apps/fancydraw-desktop/src/main.ts",
+            "polyfills": "apps/fancydraw-desktop/src/polyfills.ts",
+            "tsConfig": "apps/fancydraw-desktop/tsconfig.app.json",
+            "assets": [
+              "apps/fancydraw-desktop/src/favicon.ico",
+              "apps/fancydraw-desktop/src/assets"
+            ],
+            "styles": ["apps/fancydraw-desktop/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/fancydraw-desktop/src/environments/environment.ts",
+                  "with": "apps/fancydraw-desktop/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fancydraw-desktop:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fancydraw-desktop:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fancydraw-desktop:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/fancydraw-desktop/tsconfig.app.json",
+              "apps/fancydraw-desktop/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/fancydraw-desktop/jest.config.js",
+            "tsConfig": "apps/fancydraw-desktop/tsconfig.spec.json",
+            "setupFile": "apps/fancydraw-desktop/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "fancydraw-desktop-e2e": {
+      "root": "apps/fancydraw-desktop-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/fancydraw-desktop-e2e/cypress.json",
+            "tsConfig": "apps/fancydraw-desktop-e2e/tsconfig.e2e.json",
+            "devServerTarget": "fancydraw-desktop:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fancydraw-desktop:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/fancydraw-desktop-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "fancydraw-desktop"
+}
