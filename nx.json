@@ -13,6 +13,12 @@
     },
     "fancydraw-desktop-e2e": {
       "tags": []
+    },
+    "shell": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }

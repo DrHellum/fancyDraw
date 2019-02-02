@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { ShellModule } from '@fancydraw/shell';
 import { NxModule } from '@nrwl/nx';
 
 import { AppComponent } from './app.component';
@@ -22,7 +25,10 @@ const firebaseConfig = {
     BrowserModule,
     NxModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot([]),
+    ShellModule
   ],
   providers: [],
   bootstrap: [AppComponent]
