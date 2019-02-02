@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NxModule } from '@nrwl/nx';
 
@@ -16,8 +18,14 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, NxModule.forRoot()],
+  imports: [
+    BrowserModule,
+    NxModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
