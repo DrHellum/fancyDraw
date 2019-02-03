@@ -6,9 +6,11 @@
   },
   "exclude": [
     "src/test-setup.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "../../libs/users/**/*.spec.ts"
   ],
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "../../libs/users/**/*.ts"
   ]
 }

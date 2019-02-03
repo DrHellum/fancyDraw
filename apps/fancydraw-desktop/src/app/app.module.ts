@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -26,8 +27,12 @@ const firebaseConfig = {
     NxModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: "users" },
+      { path: 'users', loadChildren: "@fancydraw/users#UsersModule" }
+    ]),
     ShellModule
   ],
   providers: [],

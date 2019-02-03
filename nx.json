@@ -19,6 +19,9 @@
     },
     "shared": {
       "tags": []
+    },
+    "users": {
+      "tags": []
     }
   }
 }
