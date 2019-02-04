@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '@fancydraw/core';
 
 @Component({
   selector: 'fancydraw-shell',
@@ -9,7 +10,8 @@ export class ShellComponent implements OnInit {
   @Input()
   title = "";
 
-  constructor() {
+  constructor(public authService: AuthService) {
+
   }
 
   ngOnInit() {

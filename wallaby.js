@@ -56,6 +56,7 @@ module.exports = function (wallaby) {
       alias: {
         '@fancydraw/shared': path.join(wallaby.projectCacheDir, 'libs/shared/src/index.ts'),
         '@fancydraw/shell': path.join(wallaby.projectCacheDir, 'libs/shell/src/index.ts'),
+        '@fancydraw/core': path.join(wallaby.projectCacheDir, 'libs/core/src/index.ts'),
       }
     },
     node: {

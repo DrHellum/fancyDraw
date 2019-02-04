@@ -1,13 +1,20 @@
 import { async, TestBed } from '@angular/core/testing';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CoreModule } from '@fancydraw/core';
 import { SharedModule } from '@fancydraw/shared';
 import { ShellModule } from '@fancydraw/shell';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    const angularFireAuthMock = {};
+
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SharedModule, ShellModule],
+      imports: [RouterTestingModule, CoreModule, SharedModule, ShellModule],
+      providers: [
+        {provide: AngularFireAuth, useValue: angularFireAuthMock }
+      ],
       declarations: [AppComponent]
     }).compileComponents();
   }));

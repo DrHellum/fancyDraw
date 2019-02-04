@@ -1,5 +1,13 @@
 <mat-toolbar color="primary">
-  <span>{{title}}</span>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="nav-buttons">
+    <div>{{title}}</div>
+    <div *ngIf="!(authService.user$ | async)?.uid">
+      <button mat-button (click)="authService.login()">Logg inn</button>
+    </div>
+    <div *ngIf="(authService.user$ | async)?.uid">
+      <button mat-button (click)="authService.logout()">Logg ut</button>
+    </div>
+  </div>
 </mat-toolbar>
 <div>
   <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
