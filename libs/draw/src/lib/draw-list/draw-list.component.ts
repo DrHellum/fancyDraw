@@ -2,7 +2,7 @@ import { animate, animateChild, query, stagger, style, transition, trigger } fro
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import * as fromDraw from '@fancydraw/data-access';
-import { AddDraw, DeleteDraw, Draw, LoadDraws, UpdateDraw } from '@fancydraw/data-access';
+import { AddDraw, DeleteDraw, Draw, QueryDraws, UpdateDraw } from '@fancydraw/data-access';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -66,7 +66,7 @@ export class DrawListComponent implements OnInit, AfterContentInit {
           return draw;
         }));
 
-    this.store.dispatch(new LoadDraws());
+    this.store.dispatch(new QueryDraws());
   }
 
   nameChange(id: string, name: string) {
@@ -75,7 +75,7 @@ export class DrawListComponent implements OnInit, AfterContentInit {
   }
 
   addDraw() {
-    this.store.dispatch(new AddDraw({draw: {name: "Ny trekning"}}));
+    this.store.dispatch(new AddDraw({draw: {name: "Ny trekning", created: new Date()}}));
   }
 
   deleteDraw(id: string) {

@@ -6,4 +6,5 @@ export interface Draw {
   name?: string;
   groups?: Group[];
   contestants?: Contestant[];
+  created: Date;
 }

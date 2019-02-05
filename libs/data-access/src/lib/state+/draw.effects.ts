@@ -7,8 +7,8 @@ import { User } from 'firebase';
 import { combineLatest, from, Observable } from 'rxjs';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import {
-  AddDraw,
-  DeleteDraw,
+  AddDraw, AddSuccess,
+  DeleteDraw, DeleteSuccess,
   DrawActionTypes,
   DrawAdded,
   DrawModified,
@@ -22,11 +22,13 @@ import { Draw } from './draw.model';
 export class DrawEffects {
   @Effect()
   query$: Observable<Action> = combineLatest(
-    this.actions$.pipe(ofType(DrawActionTypes.LoadDraws)),
+    this.actions$.pipe(ofType(DrawActionTypes.QueryDraws)),
     this.auth.user$)
     .pipe(
       switchMap(([action, user]) => {
-        return this.afs.collection(`users/${user.uid}/draws`)
+        return this.afs.collection(`users/${user.uid}/draws`, ref => {
+          return ref.orderBy("created")
+        })
           .stateChanges()
       }),
       mergeMap(actions => {
@@ -62,8 +64,8 @@ export class DrawEffects {
     this.auth.user$)
     .pipe(
       switchMap(([action, user]: [UpdateDraw, User]) => {
-        const ref = this.afs.doc<Draw>(`users/${user.uid}/draws/${action.payload.draw.id}`);
-        return from(ref.update(action.payload.draw.changes));
+        const ref = this.afs.collection<Draw>(`users/${user.uid}/draws`);
+        return from(ref.doc(action.payload.draw.id.toString()).update(action.payload.draw.changes));
       }),
       map(() => new UpdateSuccess())
     );
@@ -78,7 +80,7 @@ export class DrawEffects {
             const ref = this.afs.collection<Draw>(`users/${user.uid}/draws`);
             return from(ref.add(action.payload.draw));
           }),
-          map(() => new UpdateSuccess())
+          map(() => new AddSuccess())
         )
       ));
 
@@ -92,7 +94,7 @@ export class DrawEffects {
             const ref = this.afs.collection<Draw>(`users/${user.uid}/draws`);
             return from(ref.doc(action.payload.id).delete());
           }),
-          map(() => new UpdateSuccess())
+          map(() => new DeleteSuccess())
         )
       ));
 

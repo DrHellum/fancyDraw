@@ -3,18 +3,20 @@ import { Action } from '@ngrx/store';
 import { Draw } from './draw.model';
 
 export enum DrawActionTypes {
-  LoadDraws = '[Draw] Load Draws',
+  QueryDraws = '[Draw] Query Draws',
   AddDraw = '[Draw] Add Draw',
+  AddSuccess = '[Draw] Add Success',
   UpdateDraw = '[Draw] Update Draw',
   UpdateSuccess = '[Draw] Update Success',
   DeleteDraw = '[Draw] Delete Draw',
+  DeleteSuccess = '[Draw] Delete Success',
   DrawAdded = '[Draw] Draw Added',
   DrawModified = '[Draw] Draw Modified',
   DrawRemoved = '[Draw] Draw Removed',
 }
 
-export class LoadDraws implements Action {
-  readonly type = DrawActionTypes.LoadDraws;
+export class QueryDraws implements Action {
+  readonly type = DrawActionTypes.QueryDraws;
 
   constructor() {
   }
@@ -27,6 +29,10 @@ export class AddDraw implements Action {
   }
 }
 
+export class AddSuccess implements Action {
+  readonly type = DrawActionTypes.AddSuccess;
+
+}
 
 export class UpdateDraw implements Action {
   readonly type = DrawActionTypes.UpdateDraw;
@@ -45,6 +51,10 @@ export class DeleteDraw implements Action {
 
   constructor(public payload: { id: string }) {
   }
+}
+
+export class DeleteSuccess implements Action {
+  readonly type = DrawActionTypes.DeleteSuccess;
 }
 
 export class DrawAdded implements Action {
@@ -69,11 +79,13 @@ export class DrawRemoved implements Action {
 }
 
 export type DrawActions =
-  LoadDraws
+  QueryDraws
   | AddDraw
+  | AddSuccess
   | UpdateDraw
   | UpdateSuccess
   | DeleteDraw
+  | DeleteSuccess
   | DrawAdded
   | DrawModified
   | DrawRemoved;

@@ -13,7 +13,7 @@ describe('Draw Reducer', () => {
   });
 
   it('drawAdded should add entity to state', () => {
-    const draw: Draw = {id: "xxx", name: "Draw1"};
+    const draw: Draw = {id: "xxx", name: "Draw1", created: new Date()};
     const action = new DrawAdded(draw);
 
     const result = reducer(initialState, action);
@@ -24,8 +24,8 @@ describe('Draw Reducer', () => {
   });
 
   it('drawModified should replace entity in state', () => {
-    const originalDraw: Draw = {id: "xxx", name: "Draw1"};
-    const newDraw: Draw = {id: "xxx", name: "Draw2"};
+    const originalDraw: Draw = {id: "xxx", name: "Draw1", created: new Date()};
+    const newDraw: Draw = {id: "xxx", name: "Draw2", created: new Date()};
 
     const action = new DrawModified(newDraw);
 
@@ -37,7 +37,7 @@ describe('Draw Reducer', () => {
   });
 
   it('drawRemoved should remove entity in state', () => {
-    const originalDraw: Draw = {id: "xxx", name: "Draw1"};
+    const originalDraw: Draw = {id: "xxx", name: "Draw1", created: new Date()};
 
     const action = new DrawRemoved(originalDraw);
 
