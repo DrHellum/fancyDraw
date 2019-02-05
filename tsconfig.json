@@ -9,15 +9,15 @@
     "importHelpers": true,
     "target": "es5",
     "module": "es2015",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "lib": ["es2017", "dom" ],
     "baseUrl": ".",
     "paths": {
       "@fancydraw/shell": ["libs/shell/src/index.ts"],
       "@fancydraw/shared": ["libs/shared/src/index.ts"],
       "@fancydraw/users": ["libs/users/src/index.ts"],
       "@fancydraw/core": ["libs/core/src/index.ts"],
-      "@fancydraw/data-access": ["libs/data-access/src/index.ts"]
+      "@fancydraw/data-access": ["libs/data-access/src/index.ts"],
+      "@fancydraw/draw": ["libs/draw/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

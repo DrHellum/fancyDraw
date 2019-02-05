@@ -1,0 +1,37 @@
+<div *ngIf="draws$ | async as draws" fxLayout="column" style="flex: 1; overflow-y: hidden">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <h1>Mine trekninger</h1>
+    <button mat-fab>
+      <mat-icon aria-label="Pluss" (click)="addDraw()">add</mat-icon>
+    </button>
+  </div>
+  <div>
+    <hr>
+  </div>
+  <div style="flex: 1; overflow-y: auto;">
+    <mat-grid-list [cols]="gridCols" [rowHeight]="250" gutterSize="5">
+      <mat-grid-tile @items [@.disabled]="animationDisabled"  *ngFor="let draw of draws">
+        <mat-card style="flex: 1;">
+            <mat-card-title>
+              <mat-form-field class="name-input">
+                <input matInput [value]="draw.name" (change)="nameChange(draw.id, $event.target.value)">
+              </mat-form-field>
+            </mat-card-title>
+          <mat-card-content>
+            <button mat-raised-button>{{draw.groups ? draw.groups.length : 0}} grupper</button>
+            <button mat-raised-button>{{draw.contestants ? draw.contestants.length : 0}} deltakere</button>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
+            <div>
+              <button mat-button>REDIGER</button>
+              <button mat-button>VIS TREKNING</button>
+            </div>
+            <button mat-icon-button (click)="deleteDraw(draw.id)">
+              <mat-icon aria-label="Slett">delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

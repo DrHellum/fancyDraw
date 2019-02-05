@@ -4,8 +4,6 @@ var path = require('path');
 var compilerOptions = Object.assign(
   require('./tsconfig.json').compilerOptions,
   require('./apps/fancydraw-desktop/tsconfig.spec.json').compilerOptions,
-  require('./libs/shared/tsconfig.spec.json').compilerOptions,
-  require('./libs/shell/tsconfig.spec.json').compilerOptions
 );
 
 compilerOptions.module = 'CommonJs';
@@ -57,6 +55,8 @@ module.exports = function (wallaby) {
         '@fancydraw/shared': path.join(wallaby.projectCacheDir, 'libs/shared/src/index.ts'),
         '@fancydraw/shell': path.join(wallaby.projectCacheDir, 'libs/shell/src/index.ts'),
         '@fancydraw/core': path.join(wallaby.projectCacheDir, 'libs/core/src/index.ts'),
+        '@fancydraw/data-access': path.join(wallaby.projectCacheDir, 'libs/data-access/src/index.ts'),
+        '@fancydraw/draw': path.join(wallaby.projectCacheDir, 'libs/draw/src/index.ts'),
       }
     },
     node: {

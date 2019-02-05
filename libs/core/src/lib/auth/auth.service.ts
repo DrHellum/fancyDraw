@@ -20,7 +20,7 @@ export class AuthService {
 
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => this.router.navigate(["users"]))
+      .then(() => this.router.navigate(["draws"]))
       .catch(() => this.router.navigate(["home"]));
   }
 

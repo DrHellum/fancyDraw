@@ -39,9 +39,10 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     RouterModule.forRoot([
-      {path: '', pathMatch: 'full', redirectTo: "home"},
+      {path: '', pathMatch: 'full', redirectTo: "draws"},
       {path: 'home', pathMatch: 'full', component: HomeComponent},
-      {path: 'users', loadChildren: "@fancydraw/users#UsersModule"}
+      {path: 'users', loadChildren: "@fancydraw/users#UsersModule"},
+      {path: 'draws', loadChildren: "@fancydraw/draw#DrawModule"}
     ]),
     ShellModule
   ],

@@ -28,6 +28,9 @@
     },
     "data-access": {
       "tags": []
+    },
+    "draw": {
+      "tags": []
     }
   }
 }

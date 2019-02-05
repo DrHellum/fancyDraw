@@ -7,10 +7,12 @@
   "exclude": [
     "src/test-setup.ts",
     "**/*.spec.ts",
-    "../../libs/users/**/*.spec.ts"
+    "../../libs/users/**/*.spec.ts",
+    "../../libs/draw/**/*.spec.ts"
   ],
   "include": [
     "**/*.ts",
-    "../../libs/users/**/*.ts"
+    "../../libs/users/**/*.ts",
+    "../../libs/draw/**/*.ts"
   ]
 }

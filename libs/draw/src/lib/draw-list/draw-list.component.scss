@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+hr {
+  margin-top: -10px;
+}
+
+[mat-fab] {
+  top:  40px;
+  right:  5px;
+  z-index: 999;
+}
+
+.name-input {
+  width: 100%;
+}
+
+mat-grid-list {
+  overflow: auto;
+  flex: 1;
+  height: 100% !important;
+}
+
+mat-grid-tile {
+
+  transition: all 400ms ease-out 200ms;
+}

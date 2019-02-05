@@ -27,7 +27,7 @@
               "apps/fancydraw-desktop/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "apps/fancydraw-desktop/src/styles.scss"
             ],
             "scripts": []
@@ -269,6 +269,37 @@
             "jestConfig": "libs/data-access/jest.config.js",
             "tsConfig": "libs/data-access/tsconfig.spec.json",
             "setupFile": "libs/data-access/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "draw": {
+      "root": "libs/draw",
+      "sourceRoot": "libs/draw/src",
+      "projectType": "library",
+      "prefix": "fancydraw",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/draw/tsconfig.lib.json",
+              "libs/draw/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/draw/jest.config.js",
+            "tsConfig": "libs/draw/tsconfig.spec.json",
+            "setupFile": "libs/draw/src/test-setup.ts"
           }
         }
       },
