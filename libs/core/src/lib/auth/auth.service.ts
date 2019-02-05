@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User | null>;
+  user$: Observable<User>;
 
   constructor(
     private router: Router,

@@ -57,6 +57,8 @@
     "@angular/cli": "7.2.3",
     "@angular/compiler-cli": "7.2.3",
     "@angular/language-service": "7.2.3",
+    "@ngrx/entity": "^7.2.0",
+    "@ngrx/schematics": "7.2.0",
     "@ngrx/store-devtools": "7.2.0",
     "@nrwl/builders": "7.5.1",
     "@nrwl/schematics": "7.5.1",

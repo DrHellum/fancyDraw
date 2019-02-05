@@ -16,7 +16,8 @@
       "@fancydraw/shell": ["libs/shell/src/index.ts"],
       "@fancydraw/shared": ["libs/shared/src/index.ts"],
       "@fancydraw/users": ["libs/users/src/index.ts"],
-      "@fancydraw/core": ["libs/core/src/index.ts"]
+      "@fancydraw/core": ["libs/core/src/index.ts"],
+      "@fancydraw/data-access": ["libs/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
