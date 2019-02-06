@@ -1,9 +1,10 @@
 import { animate, animateChild, query, stagger, style, transition, trigger } from '@angular/animations';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import * as fromDraw from '@fancydraw/data-access';
 import { AddDraw, DeleteDraw, Draw, QueryDraws, UpdateDraw } from '@fancydraw/data-access';
 import { Store } from '@ngrx/store';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -36,7 +37,7 @@ import { map } from 'rxjs/operators';
     ])
   ]
 })
-export class DrawListComponent implements OnInit, AfterContentInit {
+export class DrawListComponent implements OnInit, AfterContentInit, OnDestroy {
   gridByBreakpoint = {
     xl: 3,
     lg: 3,
@@ -61,7 +62,9 @@ export class DrawListComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.draws$ = this.store.select<Draw[]>(fromDraw.selectAll)
-        .pipe(map((draw) => {
+        .pipe(
+          untilDestroyed(this),
+          map((draw) => {
           setTimeout(() => {this.animationDisabled = false}, 100);
           return draw;
         }));
@@ -82,5 +85,8 @@ export class DrawListComponent implements OnInit, AfterContentInit {
     if (id) {
       this.store.dispatch(new DeleteDraw({id}));
     }
+  }
+
+  ngOnDestroy(): void {
   }
 }
