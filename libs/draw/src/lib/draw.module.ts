@@ -3,17 +3,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@fancydraw/shared';
 import { DrawListComponent } from './draw-list/draw-list.component';
-import { DrawEditComponent } from './draw-edit/draw-edit.component';
+import { DrawDetailsComponent } from './draw-details/draw-details.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      {path: '', pathMatch: 'full', component: DrawListComponent}
+      {path: '', pathMatch: 'full', component: DrawListComponent},
+      {path: ':drawId/details', component: DrawDetailsComponent }
     ])
   ],
-  declarations: [DrawListComponent, DrawEditComponent]
+  declarations: [DrawListComponent, DrawDetailsComponent]
 })
 export class DrawModule {
 }

@@ -11,19 +11,18 @@
   <div style="flex: 1; overflow-y: auto;">
     <mat-grid-list [cols]="gridCols" [rowHeight]="250" gutterSize="5">
       <mat-grid-tile @items [@.disabled]="animationDisabled"  *ngFor="let draw of draws">
-        <mat-card style="flex: 1;">
+        <mat-card fxFlex>
             <mat-card-title>
               <mat-form-field class="name-input">
                 <input matInput [value]="draw.name" (change)="nameChange(draw.id, $event.target.value)">
               </mat-form-field>
             </mat-card-title>
           <mat-card-content>
-            <button mat-raised-button>{{draw.groups ? draw.groups.length : 0}} grupper</button>
-            <button mat-raised-button>{{draw.contestants ? draw.contestants.length : 0}} deltakere</button>
+            <p>Trekningen har {{draw.groups.length}} grupper og {{draw.contestants.length}} brukere.</p>
           </mat-card-content>
           <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
             <div>
-              <button mat-button>REDIGER</button>
+              <button [routerLink]="[draw.id, 'details']" mat-button>REDIGER</button>
               <button mat-button>VIS TREKNING</button>
             </div>
             <button mat-icon-button (click)="deleteDraw(draw.id)">

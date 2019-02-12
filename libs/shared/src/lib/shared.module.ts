@@ -8,6 +8,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
+  MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -24,7 +25,8 @@ const SharedModules = [
   MatInputModule,
   FlexLayoutModule,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  MatTableModule
 ];
 
 

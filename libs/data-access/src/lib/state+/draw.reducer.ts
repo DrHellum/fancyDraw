@@ -1,10 +1,11 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { createFeatureSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { DrawActions, DrawActionTypes } from './draw.actions';
 import { Draw } from './draw.model';
 
 export interface DrawState extends EntityState<Draw> {
   // additional entities state properties
+  selectedDrawId?: string;
 }
 
 export const drawAdapter: EntityAdapter<Draw> = createEntityAdapter<Draw>();
@@ -37,6 +38,13 @@ export function reducer(
       };
     }
 
+    case DrawActionTypes.SetSelectedDraw: {
+      return {
+        ...state,
+        selectedDrawId: action.id
+      }
+    }
+
     default: {
       return state;
     }
@@ -51,3 +59,8 @@ export const {
   selectAll,
   selectTotal,
 } = drawAdapter.getSelectors(getDrawState);
+
+export const getSelectedDraw = createSelector(
+  getDrawState,
+  (state) => state.entities[state.selectedDrawId]
+);

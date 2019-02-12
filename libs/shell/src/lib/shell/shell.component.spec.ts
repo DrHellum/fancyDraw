@@ -3,7 +3,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from '@fancydraw/core';
 import { SharedModule } from '@fancydraw/shared';
+import { StoreModule } from '@ngrx/store';
 import { ShellComponent } from './shell.component';
+import * as fromDraw from '@fancydraw/data-access'
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -20,7 +22,9 @@ describe('ShellComponent', () => {
       imports: [
         CoreModule,
         RouterTestingModule,
-        SharedModule
+        SharedModule,
+        StoreModule.forRoot({}),
+        StoreModule.forFeature("draw", fromDraw.reducer)
       ],
       declarations: [ShellComponent],
       providers: [

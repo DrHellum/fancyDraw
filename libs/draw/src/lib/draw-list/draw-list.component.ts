@@ -2,7 +2,7 @@ import { animate, animateChild, query, stagger, style, transition, trigger } fro
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import * as fromDraw from '@fancydraw/data-access';
-import { AddDraw, DeleteDraw, Draw, QueryDraws, UpdateDraw } from '@fancydraw/data-access';
+import { AddDraw, DeleteDraw, Draw, UpdateDraw } from '@fancydraw/data-access';
 import { Store } from '@ngrx/store';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable } from 'rxjs';
@@ -62,19 +62,19 @@ export class DrawListComponent implements OnInit, AfterContentInit, OnDestroy {
 
   ngOnInit() {
     this.draws$ = this.store.select<Draw[]>(fromDraw.selectAll)
-        .pipe(
-          untilDestroyed(this),
-          map((draw) => {
-          setTimeout(() => {this.animationDisabled = false}, 100);
+      .pipe(
+        untilDestroyed(this),
+        map((draw) => {
+          setTimeout(() => {
+            this.animationDisabled = false
+          }, 100);
           return draw;
         }));
-
-    this.store.dispatch(new QueryDraws());
   }
 
   nameChange(id: string, name: string) {
     this.animationDisabled = true;
-      this.store.dispatch(new UpdateDraw({draw: {id: id, changes: {name: name}}}));
+    this.store.dispatch(new UpdateDraw({draw: {id: id, changes: {name: name}}}));
   }
 
   addDraw() {

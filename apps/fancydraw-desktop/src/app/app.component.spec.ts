@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from '@fancydraw/core';
 import { SharedModule } from '@fancydraw/shared';
 import { ShellModule } from '@fancydraw/shell';
+import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -11,10 +12,14 @@ describe('AppComponent', () => {
     const angularFireAuthMock = {};
 
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, CoreModule, SharedModule, ShellModule],
-      providers: [
-        {provide: AngularFireAuth, useValue: angularFireAuthMock }
+      imports: [
+        RouterTestingModule,
+        CoreModule,
+        SharedModule,
+        StoreModule.forRoot({}),
+        ShellModule
       ],
+      providers: [{ provide: AngularFireAuth, useValue: angularFireAuthMock }],
       declarations: [AppComponent]
     }).compileComponents();
   }));

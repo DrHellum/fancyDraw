@@ -5,10 +5,11 @@
       <div *ngIf="!(authService.user$ | async)?.uid">
         <button mat-button (click)="authService.login()">Logg inn</button>
       </div>
-      <div *ngIf="(authService.user$ | async)?.uid">
-        <button mat-button (click)="authService.logout()">Logg ut</button>
-      </div>
-<!--      <img class="user-image" *ngIf="(authService.user$ | async) as user" [src]="user.photoURL" alt="User image">-->
+<!--      <div *ngIf="(authService.user$ | async)?.uid">-->
+<!--        <button mat-button (click)="authService.logout()">Logg ut</button>-->
+<!--      </div>-->
+<!--      <span *ngIf="(authService.user$ | async) as user">{{user.displayName}}</span>-->
+      <img class="user-image" *ngIf="(authService.user$ | async) as user" [src]="user.photoURL" alt="User image" (click)="authService.logout()">
     </div>
   </div>
 </mat-toolbar>
