@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -26,6 +27,7 @@ const SharedModules = [
   FlexLayoutModule,
   FormsModule,
   ReactiveFormsModule,
+  ScrollingModule,
   MatTableModule
 ];
 

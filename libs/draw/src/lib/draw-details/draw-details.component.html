@@ -1,13 +1,16 @@
-<div *ngIf="draw$ | async as draw">
+<div fxFlex *ngIf="draw$ | async as draw">
   <div fxLayout="row">
-    <button mat-icon-button class="back-button" [routerLink]="['/draws']"><mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon></button>
+    <button mat-icon-button class="back-button" [routerLink]="['/draws']">
+      <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon>
+    </button>
     <h1>{{draw.name}}</h1>
   </div>
   <div>
     <hr>
   </div>
-  <div fxLayout.gt-xs="row" fxLayoutGap="50px">
-    <div fxFlex.gt-xs fxFlexFill>
+
+  <div style="height: 100%;" fxLayout="row" fxLayoutGap="50px">
+    <div fxFlex fxLayout="column">
       <div fxLayout="row" fxLayoutAlign="space-between">
         <h2>Grupper</h2>
         <button mat-fab>
@@ -17,28 +20,25 @@
       <div>
         <hr>
       </div>
-      <div fxLayout="column">
-        <div *ngFor="let group of draw.groups" fxFlex style="margin-top: 5px;">
-          <mat-card>
-            <mat-card-title>
-              <mat-form-field [floatLabel]="'never'" class="name-input">
-                <input matInput placeholder="Angi gruppenavn" [value]="group.name" (change)="groupNameChange(draw, group, $event.target.value)">
-              </mat-form-field>
-            </mat-card-title>
-            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
-              <div>
-                <!--                <button mat-button>REDIGER</button>-->
-                <!--                <button mat-button>VIS TREKNING</button>-->
-              </div>
-              <button mat-icon-button (click)="deleteGroup(draw, group)">
-                <mat-icon aria-label="Slett">delete</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+      <div fxFlex fxLayout="row">
+        <cdk-virtual-scroll-viewport fxLayout="column" fxFlex itemSize="65px" style="margin-bottom: 50px;">
+          <div *cdkVirtualFor="let group of draw.groups" style="margin: 5px;">
+            <mat-card>
+              <mat-card-content fxLayout="row">
+                <mat-form-field [floatLabel]="'never'" class="name-input">
+                  <input matInput placeholder="Angi gruppenavn" [value]="group.name"
+                         (change)="groupNameChange(draw, group, $event.target.value)">
+                </mat-form-field>
+                <button mat-icon-button (click)="deleteGroup(draw, group)">
+                  <mat-icon aria-label="Slett">delete</mat-icon>
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </cdk-virtual-scroll-viewport>
       </div>
     </div>
-    <div fxFlex.gt-xs>
+    <div fxFlex fxLayout="column">
       <div fxLayout="row" fxLayoutAlign="space-between">
         <h2>Deltakere</h2>
         <button mat-fab>
@@ -48,25 +48,22 @@
       <div>
         <hr>
       </div>
-      <div fxLayout="column">
-        <div #contestantList *ngFor="let contestant of draw.contestants" fxFlex style="margin-top: 5px;">
-          <mat-card>
-            <mat-card-title>
-              <mat-form-field [floatLabel]="'never'" class="name-input">
-                <input matInput placeholder="Angi deltakernavn"  [value]="contestant.name" (change)="contestantNameChange(draw, contestant, $event.target.value)">
-              </mat-form-field>
-            </mat-card-title>
-            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
-              <div>
-                <!--                <button mat-button>REDIGER</button>-->
-                <!--                <button mat-button>VIS TREKNING</button>-->
-              </div>
-              <button mat-icon-button (click)="deleteContestant(draw, contestant)">
-                <mat-icon aria-label="Slett">delete</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+      <div fxFlex fxLayout="row">
+        <cdk-virtual-scroll-viewport fxLayout="column" fxFlex itemSize="65px" style="margin-bottom: 100px">
+          <div *cdkVirtualFor="let contestant of draw.contestants" style="margin: 5px;">
+            <mat-card>
+              <mat-card-content fxLayout="row">
+                <mat-form-field [floatLabel]="'never'" class="name-input">
+                  <input matInput placeholder="Angi deltakernavn" [value]="contestant.name"
+                         (change)="contestantNameChange(draw, contestant, $event.target.value)">
+                </mat-form-field>
+                <button mat-icon-button (click)="deleteContestant(draw, contestant)">
+                  <mat-icon aria-label="Slett">delete</mat-icon>
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </cdk-virtual-scroll-viewport>
       </div>
     </div>
   </div>

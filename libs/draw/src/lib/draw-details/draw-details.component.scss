@@ -15,3 +15,17 @@ hr {
   right:  5px;
   z-index: 999;
 }
+
+cdk-virtual-scroll-viewport::-webkit-scrollbar {
+  width: 10px;
+}
+
+cdk-virtual-scroll-viewport::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
+}
+
+cdk-virtual-scroll-viewport::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}

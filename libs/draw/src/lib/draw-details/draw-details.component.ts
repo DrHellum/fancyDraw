@@ -7,7 +7,12 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'fancydraw-draw-details',
   templateUrl: './draw-details.component.html',
-  styleUrls: ['./draw-details.component.scss']
+  styleUrls: ['./draw-details.component.scss'],
+  host: {
+    '[style.flex]': "1",
+
+    '[style.display]': "flex"
+  },
 })
 export class DrawDetailsComponent implements OnInit {
   draw$: Observable<Draw>;

@@ -123,34 +123,35 @@ export class RaffleComponent implements OnInit {
       map(intervalCount => {
         this.store.dispatch(new SetDrawnOnContestants(draw.id, drawResultArray[intervalCount]));
         return intervalCount;
-      })
-    ).pipe(
-      filter(intervalCount => intervalCount === drawResultArray.length - 1)
+      }),
+      filter(intervalCount => intervalCount === drawResultArray.length - 1),
     ).subscribe(() => {
-      const drawResult = drawResultArray[drawResultArray.length - 1];
-      for (index = 0; index < drawResult.length; index++) {
-        newRaffle.groups[index].members.push(raffle.contestantPool[drawResult[index]]);
-      }
-
-      drawResult.sort((a, b) => b - a);
-      for (index = 0; index < drawResult.length; index++) {
-        newRaffle.contestantPool.splice(drawResult[index], 1);
-      }
-
-      const newRaffles = [...draw.raffles];
-      newRaffles.pop();
-      newRaffles.push(newRaffle);
-
-      this.store.dispatch(new UpdateDraw({
-        draw: {
-          id: draw.id,
-          changes: {
-            raffles: newRaffles
-          }
+      setTimeout(() => {
+        const drawResult = drawResultArray[drawResultArray.length - 1];
+        for (index = 0; index < drawResult.length; index++) {
+          newRaffle.groups[index].members.push(raffle.contestantPool[drawResult[index]]);
         }
-      }));
 
-      this.isDrawing = false;
+        drawResult.sort((a, b) => b - a);
+        for (index = 0; index < drawResult.length; index++) {
+          newRaffle.contestantPool.splice(drawResult[index], 1);
+        }
+
+        const newRaffles = [...draw.raffles];
+        newRaffles.pop();
+        newRaffles.push(newRaffle);
+
+        this.store.dispatch(new UpdateDraw({
+          draw: {
+            id: draw.id,
+            changes: {
+              raffles: newRaffles
+            }
+          }
+        }));
+
+        this.isDrawing = false;
+      }, 700);
     })
   }
 }
