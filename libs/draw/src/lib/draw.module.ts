@@ -10,8 +10,8 @@ import { DrawDetailsComponent } from './draw-details/draw-details.component';
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      {path: '', pathMatch: 'full', component: DrawListComponent},
-      {path: ':drawId/details', component: DrawDetailsComponent }
+      {path: '', pathMatch: 'full', component: DrawListComponent, data: {animation: 'List'}},
+      {path: ':drawId/details', component: DrawDetailsComponent, data: {animation: 'Detail'}}
     ])
   ],
   declarations: [DrawListComponent, DrawDetailsComponent]

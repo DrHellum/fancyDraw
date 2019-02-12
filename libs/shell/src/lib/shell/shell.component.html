@@ -13,8 +13,8 @@
     </div>
   </div>
 </mat-toolbar>
-<div class="router-container">
+<div class="router-container" [@routeAnimations]="prepareRoute(outlet)">
   <div fxLayout="column" fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%" fxFlex="90%" fxFlexOffset="5%">
-    <router-outlet></router-outlet>
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>
