@@ -1,0 +1,63 @@
+hr {
+  margin-top: -20px;
+}
+
+.back-button {
+  margin-top: 20px;
+}
+
+.group-header {
+  font-weight: 500;
+  font-size: larger;
+  text-align: center;
+}
+
+.contestant-item {
+  margin: 5px;
+  padding: 10px;
+  min-width: 150px;
+  flex: 1;
+  min-height: 25px;
+  border: solid black 0.5px;
+  color: black;
+  background: whitesmoke;
+  //font-size: large;
+  font-weight: 500;
+  transition: all 400ms ease-out 200ms,
+  background-color 100ms ease-out 25ms,
+  color 100ms ease-out 25ms;
+
+}
+
+.draw-actions {
+  margin: 10px 0 10px 0;
+
+  button {
+    margin-left: 5px;
+  }
+}
+
+.draw-color-1, .draw-color-6 {
+  background: #ffc3a0;
+}
+
+.draw-color-2, .draw-color-7 {
+  background: #848463;
+  color: white;
+}
+
+.draw-color-3, .draw-color-8 {
+  background: #fb968a;
+}
+
+.draw-color-4, .draw-color-9 {
+  background: #86664b;
+  color: white;
+}
+
+.draw-color-5, .draw-color-10 {
+  background: #a0c5c4
+}
+
+
+

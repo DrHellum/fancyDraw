@@ -14,6 +14,7 @@ export enum DrawActionTypes {
   DrawModified = '[Draw] Draw Modified',
   DrawRemoved = '[Draw] Draw Removed',
   SetSelectedDraw = '[Draw] Set Selected Draw',
+  SetDrawnOnContestants = '[Draw] Set Draw On Contestants',
 }
 
 export class QueryDraws implements Action {
@@ -65,6 +66,7 @@ export class DrawAdded implements Action {
   constructor(public payload: Draw) {
     if (!payload.groups) { payload.groups = []; }
     if (!payload.contestants) { payload.contestants = []; }
+    if (!payload.raffles) { payload.raffles = []; }
   }
 }
 
@@ -74,6 +76,7 @@ export class DrawModified implements Action {
   constructor(public payload: Draw) {
     if (!payload.groups) { payload.groups = []; }
     if (!payload.contestants) { payload.contestants = []; }
+    if (!payload.raffles) { payload.raffles = []; }
   }
 }
 
@@ -90,6 +93,12 @@ export class SetSelectedDraw implements Action {
   constructor(public id: string) {}
 }
 
+export class SetDrawnOnContestants implements Action {
+  readonly type = DrawActionTypes.SetDrawnOnContestants;
+
+  constructor(public id: string, public drawResult: number[]) {}
+}
+
 export type DrawActions =
   QueryDraws
   | AddDraw
@@ -101,4 +110,5 @@ export type DrawActions =
   | DrawAdded
   | DrawModified
   | DrawRemoved
-  | SetSelectedDraw;
+  | SetSelectedDraw
+  | SetDrawnOnContestants;

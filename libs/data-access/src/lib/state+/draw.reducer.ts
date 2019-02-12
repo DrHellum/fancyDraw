@@ -1,7 +1,8 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DrawActions, DrawActionTypes } from './draw.actions';
 import { Draw } from './draw.model';
+import { RaffleContestant } from './raffle.model';
 
 export interface DrawState extends EntityState<Draw> {
   // additional entities state properties
@@ -45,6 +46,19 @@ export function reducer(
       }
     }
 
+    case DrawActionTypes.SetDrawnOnContestants: {
+      const draw = state.entities[action.id];
+      const newRaffle = {...draw.raffles[draw.raffles.length - 1]};
+      newRaffle.contestantPool.forEach((r: RaffleContestant) => r.drawColor = "");
+      action.drawResult.forEach((result, index) => newRaffle.contestantPool[result].drawColor = "draw-color-" + (index + 1));
+      const newRaffles = [...draw.raffles];
+      newRaffles.splice(newRaffles.length - 1, 1, newRaffle);
+
+      return {
+        ...drawAdapter.updateOne({id: action.id, changes: {raffles: newRaffles}}, state)
+      };
+    }
+
     default: {
       return state;
     }
@@ -64,3 +78,4 @@ export const getSelectedDraw = createSelector(
   getDrawState,
   (state) => state.entities[state.selectedDrawId]
 );
+

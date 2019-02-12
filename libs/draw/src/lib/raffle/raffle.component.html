@@ -1,0 +1,40 @@
+<div fxFlex fxLayout="column" *ngIf="draw$ | async as draw" style="transition: all">
+  <div fxLayout="row">
+    <button mat-icon-button class="back-button" [routerLink]="['/draws']">
+      <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon>
+    </button>
+    <h1>{{draw.name}}</h1>
+  </div>
+  <div>
+    <hr>
+  </div>
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-around" *ngIf="raffle$ | async as raffle">
+    <div *ngFor="let group of raffle.groups; let color = index" class="draw-group">
+      <div class="group-header">{{group.name}}</div>
+      <div @items class="contestant-item" [ngClass]="'draw-color-' + (color+1)" [id]="member.name"
+           *ngFor="let member of group.members">
+        {{member.name}}
+      </div>
+    </div>
+  </div>
+  <div fxFlex fxLayout="row" *ngIf="raffle$ | async as raffle">
+    <mat-grid-list fxFlex [cols]="5" rowHeight="50px" class="draw-contestant">
+      <mat-grid-tile @items *ngFor="let contestant of raffle.contestantPool">
+        <div class="contestant-item" [ngClass]="contestant.drawColor" [id]="contestant.name">
+          {{contestant.name}}
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="draw-actions" fxLayout="row" fxLayoutAlign="end">
+    <div *ngIf="raffle$ | async as raffle">
+      <button color="primary" [disabled]="raffle.contestantPool.length > 0" (click)="createRaffle(draw)" mat-raised-button>Kjør ny trekning</button>
+      <button color="primary" [disabled]="raffle.contestantPool.length > 0" (click)="createRaffle(draw)" mat-raised-button>Skriv ut</button>
+      <button [disabled]="raffle.contestantPool.length === 0 || isDrawing" color="primary" (click)="doRaffle(draw, raffle)" mat-raised-button>Trekk</button>
+    </div>
+  </div>
+  <div *ngIf="!(raffle$ | async)">
+    <button color="primary" (click)="createRaffle(draw)" mat-raised-button>Kjør ny trekning</button>
+  </div>
+
+</div>

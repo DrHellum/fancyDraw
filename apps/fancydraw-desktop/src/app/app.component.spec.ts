@@ -1,5 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from '@fancydraw/core';
 import { SharedModule } from '@fancydraw/shared';
@@ -13,6 +14,7 @@ describe('AppComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
+        NoopAnimationsModule,
         RouterTestingModule,
         CoreModule,
         SharedModule,

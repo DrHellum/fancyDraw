@@ -23,7 +23,7 @@
           <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
             <div>
               <button [routerLink]="[draw.id, 'details']" mat-button>REDIGER</button>
-              <button mat-button>VIS TREKNING</button>
+              <button [routerLink]="[draw.id, 'raffle']" mat-button>VIS TREKNING</button>
             </div>
             <button mat-icon-button (click)="deleteDraw(draw.id)">
               <mat-icon aria-label="Slett">delete</mat-icon>

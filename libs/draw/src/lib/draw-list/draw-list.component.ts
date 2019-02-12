@@ -78,7 +78,7 @@ export class DrawListComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   addDraw() {
-    this.store.dispatch(new AddDraw({draw: {name: "Ny trekning", created: new Date()}}));
+    this.store.dispatch(new AddDraw({draw: {name: "Ny trekning", created: new Date(), raffles: []}}));
   }
 
   deleteDraw(id: string) {

@@ -55,7 +55,7 @@ describe('DrawListComponent', () => {
 
   it('addDraw should dispatch AddDraw', () => {
     const name = "Ny trekning";
-    const expectedAction = new AddDraw({draw: {name, created: new Date()}});
+    const expectedAction = new AddDraw({draw: {name, created: new Date(), raffles: []}});
 
     component.addDraw();
 
