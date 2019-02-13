@@ -4,7 +4,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { CoreModule } from '@fancydraw/core';
+import { AuthGuard, CoreModule } from '@fancydraw/core';
 import { DataAccessModule } from '@fancydraw/data-access';
 import { HomeComponent } from '@fancydraw/shared';
 import { ShellModule } from '@fancydraw/shell';
@@ -41,8 +41,7 @@ const firebaseConfig = {
     RouterModule.forRoot([
       {path: '', pathMatch: 'full', redirectTo: "draws"},
       {path: 'home', pathMatch: 'full', component: HomeComponent},
-      {path: 'users', loadChildren: "@fancydraw/users#UsersModule"},
-      {path: 'draws', loadChildren: "@fancydraw/draw#DrawModule"}
+      {path: 'draws', loadChildren: "@fancydraw/draw#DrawModule", canActivate: [AuthGuard]}
     ]),
     ShellModule
   ],

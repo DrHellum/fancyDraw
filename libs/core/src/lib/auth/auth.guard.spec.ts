@@ -47,7 +47,7 @@ describe('AuthGuard', () => {
 
       guard.canActivate().subscribe((result) => {
         expect(result).toBeFalsy();
-        expect(navigateSpy).toHaveBeenCalledWith(["home"]);
+        expect(navigateSpy).toHaveBeenCalledWith(["/home"]);
         done();
       })
     });
