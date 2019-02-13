@@ -28,13 +28,13 @@
   </div>
   <div class="draw-actions" fxLayout="row" fxLayoutAlign="end">
     <div *ngIf="raffle$ | async as raffle">
-      <button color="primary" [disabled]="raffle.contestantPool.length > 0" (click)="createRaffle(draw)" mat-raised-button>Kjør ny trekning</button>
+      <button color="primary" (click)="createRaffle(draw)" mat-raised-button>Start ny trekning</button>
       <button color="primary" [disabled]="raffle.contestantPool.length > 0" (click)="createRaffle(draw)" mat-raised-button>Skriv ut</button>
       <button [disabled]="raffle.contestantPool.length === 0 || isDrawing" color="primary" (click)="doRaffle(draw, raffle)" mat-raised-button>Trekk</button>
     </div>
   </div>
   <div *ngIf="!(raffle$ | async)">
-    <button color="primary" (click)="createRaffle(draw)" mat-raised-button>Kjør ny trekning</button>
+    <button color="primary" (click)="createRaffle(draw)" mat-raised-button>Start ny trekning</button>
   </div>
 
 </div>
