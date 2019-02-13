@@ -8,6 +8,9 @@
   <div>
     <hr>
   </div>
+  <div *ngIf="draws.length === 0">
+    <p>Hei! Du har for øyeblikket ingen trekninger. Trykk på den store pluss-knappen oppe til høyre for å legge til en ny trekning.</p>
+  </div>
   <div style="flex: 1; overflow-y: auto;">
     <mat-grid-list [cols]="gridCols" [rowHeight]="250" gutterSize="5">
       <mat-grid-tile @items [@.disabled]="animationDisabled"  *ngFor="let draw of draws">
@@ -33,4 +36,5 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
+
 </div>
