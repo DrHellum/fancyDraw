@@ -8,7 +8,7 @@ import {
   MatCardModule,
   MatGridListModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatMenuModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -24,11 +24,11 @@ const SharedModules = [
   MatGridListModule,
   MatCardModule,
   MatInputModule,
+  MatMenuModule,
   FlexLayoutModule,
   FormsModule,
   ReactiveFormsModule,
-  ScrollingModule,
-  MatTableModule
+  ScrollingModule
 ];
 
 

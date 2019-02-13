@@ -9,7 +9,13 @@
 <!--        <button mat-button (click)="authService.logout()">Logg ut</button>-->
 <!--      </div>-->
 <!--      <span *ngIf="(authService.user$ | async) as user">{{user.displayName}}</span>-->
-      <img class="user-image" *ngIf="(authService.user$ | async) as user" [src]="user.photoURL" alt="User image" (click)="authService.logout()">
+      <img class="user-image" *ngIf="(authService.user$ | async) as user" [src]="user.photoURL" alt="User image" [matMenuTriggerFor]="menu">
+      <mat-menu #menu="matMenu">
+        <button (click)="authService.logout()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Logg ut</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 </mat-toolbar>
