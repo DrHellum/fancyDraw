@@ -53,6 +53,7 @@
     "rxjs": "6.4.0",
     "tslib": "1.9.3",
     "web-animations-js": "^2.3.1",
+    "wijmo": "5.20183.568",
     "zone.js": "0.8.29"
   },
   "devDependencies": {

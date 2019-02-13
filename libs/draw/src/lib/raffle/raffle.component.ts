@@ -12,6 +12,7 @@ import {
 import { Store } from '@ngrx/store';
 import { interval, Observable } from 'rxjs';
 import { filter, map, takeWhile } from 'rxjs/operators';
+import * as pdf from 'wijmo/wijmo.pdf';
 
 @Component({
   selector: 'fancydraw-raffle',
@@ -153,5 +154,62 @@ export class RaffleComponent implements OnInit {
         this.isDrawing = false;
       }, 700);
     })
+  }
+
+  print(draw: Draw) {
+    const raffle: Raffle = draw.raffles[draw.raffles.length - 1];
+
+    const doc = new pdf.PdfDocument({
+      pageSettings: {
+        layout: pdf.PdfPageOrientation.Landscape,
+        size: pdf.PdfPageSize.A4
+      },
+      footer: {
+        height: 0
+      },
+      ended: (sender, args) => {
+        pdf.saveBlob(args.blob, `${draw.name}.pdf`)
+      }
+    });
+
+    const colWidth = 100;
+    const rowHeight = 18;
+    let y = 0;
+
+    doc.header.drawText(draw.name, 0, 0, {
+      font: new pdf.PdfFont("courtier", 14, "normal", "bold")
+    });
+
+    for (let i = 0; i <= raffle.groups[0].members.length; i++) {
+      for (let j = 0; j < raffle.groups.length; j++) {
+        const x = j * colWidth;
+
+
+        const text = i === 0 ?
+          raffle.groups[j].name :
+          raffle.groups[j].members[i - 1] ?
+            raffle.groups[j].members[i - 1].name : "";
+
+        if (i === 0) {
+          doc.paths
+            .rect(x, rowHeight - 5, colWidth, 0)
+            .stroke();
+        }
+
+        doc.drawText(text + '', x + 2, y + 2, {
+          height: rowHeight,
+          width: colWidth
+        });
+      }
+
+      y += rowHeight;
+
+      if (y >= doc.height) {
+        y = 0;
+        doc.addPage();
+      }
+    }
+
+    doc.end();
   }
 }
